@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import schema from './LoginSchema'
+import * as yup from 'yup'
 
 //Components imports
 import LoginForm from './LoginForm'
@@ -25,8 +27,9 @@ function LoginFormMain() {
     const [disabled, setDisabled] = useState(initialDisabled);
 
     const postNewLogin = (newLogin) => {
-        axios.post("", newLogin)
+        axios.post("https://use-my-tech-app.herokuapp.com/api/auth/login", newLogin)
         .then((res) => {
+          console.log(res)
             setLogins([...logins, res.data]);
             setFormValues(initialFormValues);
         })
@@ -36,21 +39,21 @@ function LoginFormMain() {
     }
 
     const inputChange = (name, value) => {
-        // yup
-        //   .reach(schema, name)
-        //   .validate(value)
-        //   .then(() => {
-        //     setFormErrors({
-        //       ...formErrors,
-        //       [name]: "",
-        //     });
-        //   })
-        //   .catch((err) => {
-        //     setFormErrors({
-        //       ...formErrors,
-        //       [name]: err.errors[0],
-        //     });
-        //   });
+        yup
+          .reach(schema, name)
+          .validate(value)
+          .then(() => {
+            setFormErrors({
+              ...formErrors,
+              [name]: "",
+            });
+          })
+          .catch((err) => {
+            setFormErrors({
+              ...formErrors,
+              [name]: err.errors[0],
+            });
+          });
     
         setFormValues({
           ...formValues,
@@ -66,11 +69,15 @@ function LoginFormMain() {
         postNewLogin(newLogin);
       };
 
-
-
+      //side effects
+      useEffect(() => {
+        schema.isValid(formValues).then((valid) => {
+          setDisabled(!valid);
+        });
+      }, [formValues]);
 
     return (
-      <div className="App">
+      <div className="login-form-main">
           <LoginForm 
             values={formValues}
             change={inputChange}
@@ -83,4 +90,4 @@ function LoginFormMain() {
     );
   }
   
-  export default App;
+  export default LoginFormMain;
