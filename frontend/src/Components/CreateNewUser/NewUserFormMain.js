@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import schema from './LoginSchema';
-import * as yup from 'yup';
+import NewUserForm from './NewUserForm';
 import styled from 'styled-components';
-import axiosWithAuth from '../axiosWithAuth';
-import loginSuccess from '../Actions/TechStuffActions';
 
-//Components imports
+import * as yup from 'yup';
+import schema from './validation/formSchema';
+import newUser from '../../Actions/TechStuffActions';
 
-import LoginForm from './LoginForm';
-
-//Styles
 const MainContainer = styled.div`
   display: flex;
   align-items: center;
@@ -19,32 +15,35 @@ const MainContainer = styled.div`
   background-color: #53565a;
 `;
 
-//Shape of state for form
 const initialFormValues = {
+  /// TEXT INPUTS ///
   username: '',
   password: '',
+  /// DROPDOWN ///
+  role: '',
 };
 
 const initialFormErrors = {
   username: '',
   password: '',
+  role: '',
 };
 
-const initialLogins = [];
+const initialUsers = [];
 const initialDisabled = true;
 
-function LoginFormMain() {
-  const [logins, setLogins] = useState(initialLogins);
+function NewUserFormMain() {
+  const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
-  const postNewLogin = (newLogin) => {
+  const postNewUsers = (user) => {
     axios
-      .post('/api/auth/login', newLogin)
+      .post('https://use-my-tech-app.herokuapp.com/api/auth/register', user)
       .then((res) => {
-        console.log(res);
-        setLogins([...logins, res.data]);
+        //console.log(res.data);
+        setUsers([...users, res.data]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
@@ -52,51 +51,43 @@ function LoginFormMain() {
       });
   };
 
-  const inputChange = (name, value) => {
-    yup
-      .reach(schema, name)
-      .validate(value)
-      .then(() => {
-        setFormErrors({
-          ...formErrors,
-          [name]: '',
-        });
-      })
-      .catch((err) => {
-        setFormErrors({
-          ...formErrors,
-          [name]: err.errors[0],
-        });
-      });
-
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const formSubmit = () => {
-    const newLogin = {
-      username: formValues.username.trim(),
-      password: formValues.password.trim(),
-    };
-    // postNewLogin(newLogin);
-    props.loginSuccess(newLogin);
-  };
-
-  //side effects
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
     });
   }, [formValues]);
 
+  const inputChange = (name, value) => {
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({ ...formErrors, [name]: '' });
+      })
+      .catch((err) => {
+        setFormErrors({ ...formErrors, [name]: err.errors[0] });
+      });
+
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const submitForm = () => {
+    const newUser = {
+      username: formValues.username.trim(),
+      password: formValues.password.trim(),
+      role: formValues.role.trim(),
+    };
+
+    // postNewUsers(newUser);
+    props.newUser(newUser);
+  };
+
   return (
     <MainContainer>
-      <LoginForm
+      <NewUserForm
         values={formValues}
         change={inputChange}
-        submit={formSubmit}
+        submit={submitForm}
         disabled={disabled}
         errors={formErrors}
       />
@@ -104,4 +95,4 @@ function LoginFormMain() {
   );
 }
 
-export default LoginFormMain;
+export default NewUserFormMain;

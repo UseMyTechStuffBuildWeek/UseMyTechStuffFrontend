@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from react-redux;
+import { addFeature } from '../../Actions/TechStuffActions'
 
-export default function AddEquipmentForm(props){
+function AddEquipmentForm(props){
     const { values, submit, change, disabled, errors } = props;
 
     const onSubmit = (evt) => {
@@ -54,5 +56,11 @@ export default function AddEquipmentForm(props){
                 
             </div>
         </form>
-    )
+)};
+       
+    const mapStateToProps = (state) => {
+        return {
+            item: state.item,
+    }    
 }
+export default connect(mapStateToProps, {addFeature})(AddEquipmentForm);

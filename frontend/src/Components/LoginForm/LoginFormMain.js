@@ -2,22 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import schema from './LoginSchema';
 import * as yup from 'yup';
-import styled from 'styled-components';
-import axiosWithAuth from '../axiosWithAuth';
-import loginSuccess from '../Actions/TechStuffActions';
+import { connect } from 'react-redux';
 
 //Components imports
-
 import LoginForm from './LoginForm';
-
-//Styles
-const MainContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #53565a;
-`;
 
 //Shape of state for form
 const initialFormValues = {
@@ -41,7 +29,7 @@ function LoginFormMain() {
 
   const postNewLogin = (newLogin) => {
     axios
-      .post('/api/auth/login', newLogin)
+      .post('https://use-my-tech-app.herokuapp.com/api/auth/login', newLogin)
       .then((res) => {
         console.log(res);
         setLogins([...logins, res.data]);
@@ -80,8 +68,7 @@ function LoginFormMain() {
       username: formValues.username.trim(),
       password: formValues.password.trim(),
     };
-    // postNewLogin(newLogin);
-    props.loginSuccess(newLogin);
+    postNewLogin(newLogin);
   };
 
   //side effects
@@ -92,7 +79,7 @@ function LoginFormMain() {
   }, [formValues]);
 
   return (
-    <MainContainer>
+    <div className="login-form-main">
       <LoginForm
         values={formValues}
         change={inputChange}
@@ -100,8 +87,14 @@ function LoginFormMain() {
         disabled={disabled}
         errors={formErrors}
       />
-    </MainContainer>
+    </div>
   );
 }
-
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+    password: state.password,
+  };
+};
+export default connect(mapStateToProps, {})(LoginFormMain);
 export default LoginFormMain;

@@ -1,54 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import schema from './LoginSchema';
 import * as yup from 'yup';
-import styled from 'styled-components';
 import axiosWithAuth from '../axiosWithAuth';
-import loginSuccess from '../Actions/TechStuffActions';
+import schema from './addEquipmentFormSchema';
+import AddEquipmentForm from './AddEquipmentForm';
+import addFeature from '../../Actions/TechStuffActions';
+import { connect } from 'react-redux';
 
-//Components imports
-
-import LoginForm from './LoginForm';
-
-//Styles
-const MainContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #53565a;
-`;
-
-//Shape of state for form
 const initialFormValues = {
-  username: '',
-  password: '',
+  name: '',
+  description: '',
+  imgUrl: '',
 };
 
 const initialFormErrors = {
-  username: '',
-  password: '',
+  name: '',
+  description: '',
+  imgUrl: '',
 };
 
-const initialLogins = [];
+const initialEquipment = [];
 const initialDisabled = true;
 
-function LoginFormMain() {
-  const [logins, setLogins] = useState(initialLogins);
+function AddEquipmentFormMain() {
+  const [equipment, setEquipment] = useState(initialEquipment);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
-  const postNewLogin = (newLogin) => {
-    axios
-      .post('/api/auth/login', newLogin)
+  const postNewEquipment = (newEquipment) => {
+    axiosWithAuth()
+      .post('/api/equipment', newEquipment)
       .then((res) => {
-        console.log(res);
-        setLogins([...logins, res.data]);
+        setEquipment([res.data, ...equipment]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
         console.log(err);
+        debugger;
       });
   };
 
@@ -62,6 +51,7 @@ function LoginFormMain() {
           [name]: '',
         });
       })
+
       .catch((err) => {
         setFormErrors({
           ...formErrors,
@@ -76,15 +66,19 @@ function LoginFormMain() {
   };
 
   const formSubmit = () => {
-    const newLogin = {
-      username: formValues.username.trim(),
-      password: formValues.password.trim(),
+    const newEquipment = {
+      name: formValues.name.trim(),
+      imgUrl: formValues.imgUrl.trim(),
+      description: formValues.description.trim(),
     };
-    // postNewLogin(newLogin);
-    props.loginSuccess(newLogin);
+    // postNewEquipment(newEquipment);
+    props.addFeature(newEquipment);
   };
 
-  //side effects
+  // useEffect(() => {
+  //     getEquipment();
+  //   }, []);
+
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
@@ -92,16 +86,15 @@ function LoginFormMain() {
   }, [formValues]);
 
   return (
-    <MainContainer>
-      <LoginForm
+    <div>
+      <AddEquipmentForm
         values={formValues}
         change={inputChange}
         submit={formSubmit}
         disabled={disabled}
         errors={formErrors}
       />
-    </MainContainer>
+    </div>
   );
 }
-
-export default LoginFormMain;
+export default connect(null, { addFeature })(AddEquipmentFormMain);
