@@ -2,11 +2,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import schema from './LoginSchema';
 import * as yup from 'yup';
+import styled from 'styled-components';
 import axiosWithAuth from '../axiosWithAuth';
 
 //Components imports
+
 import LoginForm from './LoginForm'
 
+//Styles
+const MainContainer = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height: 100vh;
+    background-color: #53565A;
+  `
+    
 //Shape of state for form
 const initialFormValues = {
     username: "",
@@ -78,7 +89,7 @@ function LoginFormMain() {
       }, [formValues]);
 
     return (
-      <div className="login-form-main">
+      <MainContainer>
           <LoginForm 
             values={formValues}
             change={inputChange}
@@ -86,7 +97,7 @@ function LoginFormMain() {
             disabled={disabled}
             errors={formErrors}
           />
-      </div>
+      </MainContainer>
 
     );
   }
