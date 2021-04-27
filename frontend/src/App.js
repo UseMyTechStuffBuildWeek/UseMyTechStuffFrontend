@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import './EditEquipment/App'
-import './loginForm/App'
+import './EditEquipment/FormApp'
+import './LoginForm/LoginFormMain'
 
 
 function App() {

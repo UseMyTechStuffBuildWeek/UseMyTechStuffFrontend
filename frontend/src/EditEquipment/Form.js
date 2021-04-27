@@ -1,41 +1,49 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+
 
 export default function Form (props) {
 
-    const { items } = props;
-    const { itemID } = useParams();
+        const { values, update, submit, disabled, errors } = props;
 
-    const item = items.find(item => {
-        return item.id === itemID
-    }) || {}
+        const onChange = evt => {
+            const { name, value } = evt.target;
+            update(name, value);
+        }
+
+        const onSubmit = evt => {
+            evt.preventDefault();
+            submit();
+        }
 
     return (
         <div>
             <h2>Edit Equipment:</h2>
-            <form>
-                <label>Name:&nbsp;
-                    <input value={item.name}
-                            //onchange
+            <div>{errors.name}</div>
+            <div>{errors.description}</div>
+            <div>{errors.imgUrl}</div>
+            <form onSubmit={onSubmit}>
+                <label>Name:
+                    <input value={values.name}
+                           onChange={onChange}
                            name='name'
                            type='text'
                     />
                 </label>
-                <label>Description:&nbsp;
-                    <input value={item.description}
-                           //onchange
+                <label>Description:
+                    <input value={values.description}
+                           onChange={onChange}
                            name='description'
                            type='text'
                     />
                 </label>
-                <label>Upload a New Image:&nbsp;
-                    <input value={item.imgUrl}
-                           //onchange
+                <label>Upload a New Image:
+                    <input value={values.imgUrl}
+                           onChange={onChange}
                            name='imgUrl'
-                           type='file'
+                           type='url'
                     />
                 </label>
-                <button>Submit</button>
+                <button disabled={disabled}>Submit</button>
             </form>
         </div>
     )
