@@ -3,6 +3,10 @@ import LoginFormMain from './LoginForm/LoginFormMain';
 import './EditEquipment/FormApp'
 import FormApp from './EditEquipment/FormApp'
 
+import NewUserFormMain from './CreateNewUser/NewUserFormMain'
+
+
+
 
 
 function App() {
@@ -13,5 +17,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
