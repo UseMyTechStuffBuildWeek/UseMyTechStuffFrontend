@@ -5,17 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import { Provider } from redux;
+import { Provider } from 'redux';
+import { techStuffReducer } from '../src/Reducers/TechStuffReducer';
 
-const store = createStore()
-
-
+const store = createStore();
 
 ReactDOM.render(
   <Provider store={store}>
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </Provider>,
   document.getElementById('root')
 );

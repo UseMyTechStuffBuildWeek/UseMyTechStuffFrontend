@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from react-redux;
 
 export default function AddEquipmentForm(props){
     const { values, submit, change, disabled, errors } = props;
@@ -54,5 +55,11 @@ export default function AddEquipmentForm(props){
                 
             </div>
         </form>
-    )
+)};
+       
+    const mapStateToProps = (state) => {
+        return {
+            item: state.item,
+    }    
 }
+export default connect(mapStateToProps, {})(AddEquipmentForm);

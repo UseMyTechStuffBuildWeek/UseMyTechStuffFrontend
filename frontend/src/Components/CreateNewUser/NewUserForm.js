@@ -1,8 +1,8 @@
 import React from 'react'
-
+import { connect } from react-redux;
 import styled from 'styled-components'
 
-const NewUserContainer = styled.div`
+export const NewUserContainer = styled.div`
     padding:30px;
     input, button {
         appearance: none;
@@ -142,5 +142,10 @@ function NewUserForm (props) {
         </StyleForm>
     )
 }
-
-export default NewUserForm;
+const mapStateToProps = (state) => {
+    return {
+        username: state.username,
+        password: state.password
+    };
+};
+export default connect(mapStateToProps,{})(NewUserForm);
