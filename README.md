@@ -1,6 +1,6 @@
 # UseMyTechStuffFrontend
 
-## ☝️ Proposal..
+## ☝️ Proposal...
 
 **What problem does your app solve?**
 - The app connects people who want to rent equipment with people who have equipment without the fees of a middle person.
