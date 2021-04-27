@@ -21,7 +21,7 @@ const initialFormErrors = {
 const initialItem = [];
 const initialDisabled = true;
 
-export default function FormApp() {
+function FormApp() {
   const [item, setItem] = useState(initialItem);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -95,3 +95,4 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps, {})(Form);
+export default FormApp;

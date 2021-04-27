@@ -21,7 +21,7 @@ const initialFormErrors = {
 const initialLogins = [];
 const initialDisabled = true;
 
-export default function LoginFormMain() {
+function LoginFormMain() {
   const [logins, setLogins] = useState(initialLogins);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -97,3 +97,4 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps, {})(LoginFormMain);
+export default LoginFormMain;
