@@ -7,7 +7,7 @@ const StyledForm = styled.form`
     box-shadow: 0px 1px 6px 2px rgb(128, 127, 127);
     display:block;
     position:relative;
-    background-image: linear-gradient(to bottom right, #FFCE00, #FE4880)
+    background-image: linear-gradient(to bottom right, #FFCE00, #FE4880);
 `
 const LoginContainer = styled.div`
     padding:30px;
