@@ -1,4 +1,13 @@
 import React from 'react';
+import styled from 'styled-components'
+
+const StyledForm = styled.form`
+    font-family: 'Poppins', sans-serif;
+    background-color: #1cc5dc;
+    width: 100%;
+    height: 100vh;
+`
+
 
 export default function LoginForm({ values, submit, change, disabled, errors }) {
 
@@ -14,7 +23,7 @@ export default function LoginForm({ values, submit, change, disabled, errors }) 
 
 
     return (
-        <form id='login-form' onSubmit={onSubmit}>
+        <StyledForm id='login-form' onSubmit={onSubmit}>
             <div className="username-input">
                 <h2>Login</h2>
                 <div className="error">
@@ -23,23 +32,23 @@ export default function LoginForm({ values, submit, change, disabled, errors }) 
                 </div>
                 <label>
                     <input
-                      type="text"
-                      value={values.username}
-                      onChange={onChange}
-                      name="username"
-                      placeholder="Username"
+                        type="text"
+                        value={values.username}
+                        onChange={onChange}
+                        name="username"
+                        placeholder="Username"
                     />
                 </label>
             </div>
 
             <div className="password-input">
-               <label>
+            <label>
                     <input
-                       type="password"
-                       value={values.password}
-                       onChange={onChange}
-                       name="password"
-                       placeholder="Password" 
+                        type="password"
+                        value={values.password}
+                        onChange={onChange}
+                        name="password"
+                        placeholder="Password" 
                     />
                 </label> 
             </div>
@@ -47,7 +56,7 @@ export default function LoginForm({ values, submit, change, disabled, errors }) 
             <div>
                 <button id="login-button"disabled={disabled}>Login</button>
             </div>
-        </form>
+        </StyledForm>
     );
   }
   
