@@ -1,8 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import LoginFormMain from './LoginForm/LoginFormMain';
 import './EditEquipment/FormApp'
-import './LoginForm/LoginFormMain'
+import FormApp from './EditEquipment/FormApp'
 
 
 
@@ -10,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <LoginFormMain />
+      <FormApp />
     </div>
   );
 }
