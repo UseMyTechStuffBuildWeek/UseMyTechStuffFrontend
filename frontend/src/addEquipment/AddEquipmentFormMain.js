@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as yup from 'yup';
-
+import axiosWithAuth from '../axiosWithAuth';
 import schema from './addEquipmentFormSchema'
 import AddEquipmentForm from './AddEquipmentForm';
 
@@ -27,8 +27,8 @@ export default function AddEquipmentFormMain() {
     const [disabled, setDisabled] = useState(initialDisabled);
 
     const postNewEquipment = (newEquipment) => {
-        axios
-            .post("https://use-my-tech-app.herokuapp.com/api/equipment", newEquipment)
+        axiosWithAuth()
+            .post("/api/equipment", newEquipment)
             .then((res) => {
                 setEquipment([res.data, ...equipment]);
                 setFormValues(initialFormValues);

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'
-import schema from './LoginSchema'
-import * as yup from 'yup'
+import axios from 'axios';
+import schema from './LoginSchema';
+import * as yup from 'yup';
+import axiosWithAuth from '../axiosWithAuth';
 
 //Components imports
 import LoginForm from './LoginForm'
@@ -27,7 +28,7 @@ function LoginFormMain() {
     const [disabled, setDisabled] = useState(initialDisabled);
 
     const postNewLogin = (newLogin) => {
-        axios.post("https://use-my-tech-app.herokuapp.com/api/auth/login", newLogin)
+        axios.post("/api/auth/login", newLogin)
         .then((res) => {
           console.log(res)
             setLogins([...logins, res.data]);

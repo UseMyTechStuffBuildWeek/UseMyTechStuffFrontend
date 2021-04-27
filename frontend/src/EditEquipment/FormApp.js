@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import Form from './Form';
 // import './App.css';
 import schema from './FormSchema';
+import axiosWithAuth from '../axiosWithAuth';
 
 const initialFormValues = {
     name: '',
@@ -45,8 +46,8 @@ export default function FormApp() {
   };
 
   const updateItem = itemToBeUpdated => {
-    axios
-      .post('https://use-my-tech-app.herokuapp.com/api/equipment', itemToBeUpdated) 
+    axiosWithAuth()
+      .post('/api/equipment', itemToBeUpdated) 
             //This URL will need to be changed once authorization is completed, currently it just adds new Equipment instead of updating already existing equipment.
       .then(res => {
         console.log(res);
