@@ -22,26 +22,29 @@ export const techStuffReducer = (state = initialState, action) => {
     case ADD_FEATURE:
       return {
         ...state,
-        item: [...state.item, action.payload],
+        item: action.payload,
       };
 
     case NEW_USER_FEATURE:
       return {
         ...state,
-        user: [action.payload],
+        user: action.payload,
       };
 
     case EDIT_FEATURE:
-      const editItem = state.item.find((item) => item.name === action.payload);
+      const editItem = state.item.find((item) => item.id === action.payload);
       return {
         ...state,
-        item: [...state.item, action.payload],
+        item: action.payload,
       };
 
     case LOGIN_FEATURE:
       return {
         ...state,
-        user: [action.payload],
+        user: action.payload,
       };
+
+    default:
+      return state;
   }
 };

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import axiosWithAuth from '../../axiosWithAuth';
 import * as yup from 'yup';
 import Form from './Form';
 // import './App.css';
 import schema from './FormSchema';
 import { connect } from 'react-redux';
+import editedFeature from '../../Actions/TechStuffActions';
 
 const initialFormValues = {
   name: '',
@@ -64,7 +66,8 @@ function FormApp() {
       description: formValues.description.trim(),
       imgUrl: formValues.imgUrl.trim(),
     };
-    updateItem(itemToBeUpdated);
+    // updateItem(itemToBeUpdated);
+    props.editedFeature(itemToBeUpdated);
   };
 
   useEffect(() => {
