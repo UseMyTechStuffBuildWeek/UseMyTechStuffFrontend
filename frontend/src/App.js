@@ -1,10 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 import AddEquipment from './Components/addEquipment/AddEquipmentFormMain';
 import LoginForm from './Components/LoginForm/LoginFormMain';
 import FormApp from './Components/EditEquipment/FormApp';
 import NewUserForm from './Components/CreateNewUser/NewUserFormMain';
+import Renter from './Components/Renter/Renter';
+import Owner from './Components/Owner/Owner';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -29,6 +31,8 @@ function App() {
         <Switch>
           <PrivateRoute exact path="/editequipment" component={FormApp} />
           <PrivateRoute exact path="/addequipment" component={AddEquipment} />
+          <PrivateRoute exact path="/renter" component={Renter} />
+          <PrivateRoute exact path="/owner" component={Owner} />
           <Route path="/login">
             <LoginForm />
           </Route>

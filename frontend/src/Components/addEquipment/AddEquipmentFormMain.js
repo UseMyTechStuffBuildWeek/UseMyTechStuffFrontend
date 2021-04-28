@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
-import axiosWithAuth from '../axiosWithAuth';
+import { axiosWithAuth } from '../../axiosWithAuth';
 import schema from './addEquipmentFormSchema';
 import AddEquipmentForm from './AddEquipmentForm';
-import addFeature from '../../Actions/TechStuffActions';
+import { addFeature } from '../../Actions/TechStuffActions';
 import { connect } from 'react-redux';
 
 const initialFormValues = {
@@ -21,7 +21,7 @@ const initialFormErrors = {
 const initialEquipment = [];
 const initialDisabled = true;
 
-function AddEquipmentFormMain() {
+function AddEquipmentFormMain(props) {
   const [equipment, setEquipment] = useState(initialEquipment);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);

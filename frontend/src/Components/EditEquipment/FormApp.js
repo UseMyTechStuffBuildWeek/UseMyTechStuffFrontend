@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axiosWithAuth from '../../axiosWithAuth';
+import { axiosWithAuth } from '../../axiosWithAuth';
 import * as yup from 'yup';
 import Form from './Form';
 // import './App.css';
 import schema from './FormSchema';
 import { connect } from 'react-redux';
-import editedFeature from '../../Actions/TechStuffActions';
+import { editedFeature } from '../../Actions/TechStuffActions';
 
 const initialFormValues = {
   name: '',
@@ -22,7 +22,7 @@ const initialFormErrors = {
 const initialItem = [];
 const initialDisabled = true;
 
-function FormApp() {
+function FormApp(props) {
   const [item, setItem] = useState(initialItem);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);

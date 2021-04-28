@@ -3,9 +3,10 @@ import schema from './LoginSchema';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import axiosWithAuth from '../axiosWithAuth';
+import axios from 'axios';
 //Components imports
 import LoginForm from './LoginForm';
+import { useHistory } from 'react-router-dom';
 
 const MainContainer = styled.div`
   display: flex;
@@ -35,13 +36,22 @@ function LoginFormMain() {
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
+  const { push } = useHistory();
+
   const postNewLogin = (newLogin) => {
-    axiosWithAuth()
+    axios
       .post('https://use-my-tech-app.herokuapp.com/api/auth/login', newLogin)
       .then((res) => {
         console.log(res);
         setLogins([...logins, res.data]);
         setFormValues(initialFormValues);
+        const token = res.data.token;
+        localStorage.setItem('token', token);
+        if (res.data.role === 'owner') {
+          push('/owner');
+        } else {
+          push('/renter');
+        }
       })
       .catch((err) => {
         console.log(err);

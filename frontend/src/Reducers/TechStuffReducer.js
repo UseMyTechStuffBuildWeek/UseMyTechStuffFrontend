@@ -3,7 +3,7 @@ import {
   NEW_USER_FEATURE,
   EDIT_FEATURE,
   LOGIN_FEATURE,
-} from '../actions/TechStuffActions';
+} from '../Actions/TechStuffActions';
 
 const initialState = {
   user: {

@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore, applyMiddleware } from 'redux';
 import logger from 'redux-logger';
-import { Provider } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import { techStuffReducer } from '../src/Reducers/TechStuffReducer';
 
-const store = createStore();
+const store = createStore(techStuffReducer, applyMiddleware(logger));
 
 ReactDOM.render(
   <Provider store={store}>

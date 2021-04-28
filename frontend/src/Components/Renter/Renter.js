@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { axiosWithAuth } from './../../axiosWithAuth';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const Renter = () => {
   const [equipmentList, setEquipmentList] = useState([]);
 
-  axiosWithAuth()
-    .get(`/api/equipment`)
-    .then((res) => {
-      console.log(res.data);
-      setEquipmentList(res.data);
-    })
-    .catch((error) => console.log(error));
+  useEffect(() => {
+    axios
+      .get(`https://use-my-tech-app.herokuapp.com/api/equipment`)
+      .then((res) => {
+        console.log(res.data);
+        setEquipmentList(res.data);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <div>
@@ -18,7 +20,7 @@ const Renter = () => {
         return (
           <div>
             <p>{item.name}</p>
-            <a href={item.imgUrl} />
+            <img src={item.imgUrl} />
             <p>{item.description}</p>
           </div>
         );
