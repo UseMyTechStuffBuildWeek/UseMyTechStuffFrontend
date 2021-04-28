@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import axiosWithAuth from '../../axiosWithAuth';
 import * as yup from 'yup';
 import Form from './Form';
@@ -45,10 +44,7 @@ function FormApp() {
 
   const updateItem = (itemToBeUpdated) => {
     axiosWithAuth()
-      .post(
-        '/api/equipment',
-        itemToBeUpdated
-      )
+      .post('/api/equipment', itemToBeUpdated)
       //This URL will need to be changed once authorization is completed, currently it just adds new Equipment instead of updating already existing equipment.
       .then((res) => {
         console.log(res);

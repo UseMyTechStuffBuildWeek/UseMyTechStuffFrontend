@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from react-redux;
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom';
 
 export const NewUserContainer = styled.div`
     padding:30px;
@@ -91,6 +92,8 @@ function NewUserForm (props) {
         change(name, value);
     }
 
+    const { push } = useHistory();
+
     const onSubmit = evt => {
         evt.preventDefault();
         submit();
@@ -135,7 +138,13 @@ function NewUserForm (props) {
                     </label>
                 </FormGroup>
                 <div className='submit'>
-                    <button disabled={disabled}>Submit</button>
+                    <button disabled={disabled} onClick={() => {
+                        if (state.role==='owner'){
+                            push('./owner')         
+                            } else {
+                                push('./renter')
+                            }
+                        }}>Submit</button>
                 </div>
                 
             </NewUserContainer>

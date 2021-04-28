@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import schema from './LoginSchema';
 import * as yup from 'yup';
 import { connect } from 'react-redux';
@@ -15,8 +14,6 @@ const MainContainer = styled.div`
   height: 100vh;
   background-color: #53565a;
 `;
-
-
 
 //Shape of state for form
 const initialFormValues = {
@@ -108,4 +105,3 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps, {})(LoginFormMain);
-
