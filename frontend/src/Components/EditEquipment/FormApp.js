@@ -44,9 +44,9 @@ function FormApp() {
   };
 
   const updateItem = (itemToBeUpdated) => {
-    axios
+    axiosWithAuth()
       .post(
-        'https://use-my-tech-app.herokuapp.com/api/equipment',
+        '/api/equipment',
         itemToBeUpdated
       )
       //This URL will need to be changed once authorization is completed, currently it just adds new Equipment instead of updating already existing equipment.
@@ -97,5 +97,4 @@ const mapStateToProps = (state) => {
     imgUrl: state.imgUrl,
   };
 };
-export default connect(mapStateToProps, {})(Form);
-export default FormApp;
+export default connect(mapStateToProps, {})(FormApp);
