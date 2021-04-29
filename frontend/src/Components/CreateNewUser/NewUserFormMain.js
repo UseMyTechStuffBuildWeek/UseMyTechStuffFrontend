@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import schema from './validation/formSchema';
 import { newUserFeature } from '../../Actions/TechStuffActions';
+import { useHistory } from 'react-router-dom';
 
 const MainContainer = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const MainContainer = styled.div`
   justify-content: center;
   height: 100vh;
   background-color: #53565a;
-`;
+  `;
 
 const initialFormValues = {
   /// TEXT INPUTS ///
@@ -32,11 +33,13 @@ const initialFormErrors = {
 const initialUsers = [];
 const initialDisabled = true;
 
+
 function NewUserFormMain(props) {
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+  const { push } = useHistory();
 
   const postNewUsers = (user) => {
     axios
@@ -45,6 +48,8 @@ function NewUserFormMain(props) {
         //console.log(res.data);
         setUsers([...users, res.data]);
         setFormValues(initialFormValues);
+        
+        push('/login');
       })
       .catch((err) => {
         console.log(err);
