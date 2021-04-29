@@ -1,4 +1,3 @@
-import { axiosWithAuth } from '../axiosWithAuth';
 export const ADD_FEATURE = 'ADD_FEATURE';
 export const NEW_USER_FEATURE = 'NEW_USER_FEATURE';
 export const EDIT_FEATURE = 'EDIT_FEATURE';
