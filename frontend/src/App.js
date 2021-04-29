@@ -29,7 +29,9 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <PrivateRoute exact path="/editequipment" component={FormApp} />
+          <PrivateRoute exact path="/editequipment/:id">
+            <FormApp />
+          </PrivateRoute>
           <PrivateRoute exact path="/addequipment" component={AddEquipment} />
           <PrivateRoute exact path="/renter" component={Renter} />
           <PrivateRoute exact path="/owner" component={Owner} />

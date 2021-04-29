@@ -46,7 +46,7 @@ function LoginFormMain() {
         setLogins([...logins, res.data]);
         setFormValues(initialFormValues);
         const token = res.data.token;
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', `"${token}"`);
         if (res.data.role === 'owner') {
           push('/owner');
         } else {

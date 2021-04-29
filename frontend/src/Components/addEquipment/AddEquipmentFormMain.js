@@ -5,6 +5,7 @@ import schema from './addEquipmentFormSchema';
 import AddEquipmentForm from './AddEquipmentForm';
 import { addFeature } from '../../Actions/TechStuffActions';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const initialFormValues = {
   name: '',
@@ -31,12 +32,12 @@ function AddEquipmentFormMain(props) {
     axiosWithAuth()
       .post('/api/equipment', newEquipment)
       .then((res) => {
+        console.log(res);
         setEquipment([res.data, ...equipment]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
         console.log(err);
-        debugger;
       });
   };
 
@@ -70,7 +71,7 @@ function AddEquipmentFormMain(props) {
       imgUrl: formValues.imgUrl.trim(),
       description: formValues.description.trim(),
     };
-    // postNewEquipment(newEquipment);
+    postNewEquipment(newEquipment);
     props.addFeature(newEquipment);
   };
 
