@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addFeature } from '../../Actions/TechStuffActions';
 
-export const AddEquipmentContainer = ` styled.div
+export const AddEquipmentContainer = styled.div`
   padding: 30px;
   input,
   button {
@@ -41,7 +41,6 @@ const StyleForm = `styled.form
     position:relative;
     background-image: linear-gradient(to bottom right, #FFCE00, #FE4880);
 
-
 const FormGroup = styled.div
     display:block;
     width: 300px;
@@ -57,7 +56,7 @@ const FormGroup = styled.div
 
     &:focus-within label {
         color: white;
-    } 
+    }
 
     input {
         display:block;
