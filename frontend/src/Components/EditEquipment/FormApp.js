@@ -55,6 +55,7 @@ function FormApp(props) {
       .then((res) => {
         setItem(res.data)
         console.log(itemToBeUpdated);
+        push('/owner');
       })
       .catch(err => {
         console.log(err);

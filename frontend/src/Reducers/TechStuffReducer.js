@@ -1,4 +1,3 @@
-import { axiosWithAuth } from '../axiosWithAuth';
 import {
   ADD_FEATURE,
   NEW_USER_FEATURE,
