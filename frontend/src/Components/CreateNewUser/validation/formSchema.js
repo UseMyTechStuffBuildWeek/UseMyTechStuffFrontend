@@ -10,5 +10,5 @@ export default yup.object().shape({
     .required('Password is required'),
     role: yup
     .string()
-    .oneOf(['Owner', 'Renter'], 'Role is required'),
+    .oneOf(['owner', 'renter'], 'Role is required'),
 })
