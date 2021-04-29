@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addFeature } from '../../Actions/TechStuffActions';
+import styled from 'styled-components';
 
 export const AddEquipmentContainer = styled.div`
   padding: 30px;
