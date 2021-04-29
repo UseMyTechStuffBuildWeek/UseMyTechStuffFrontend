@@ -1,4 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
+
+
 
 export default function Form(props) {
   const { values, update, submit, disabled, errors } = props;
@@ -13,8 +16,14 @@ export default function Form(props) {
     submit();
   };
 
+  // STYLES //
+  
+  
+  // STYLES ABOVE //
+
   return (
     <div>
+      <h1>Update your Listing:</h1>
       <h2>Edit Equipment:</h2>
       <div>{errors.name}</div>
       <div>{errors.description}</div>

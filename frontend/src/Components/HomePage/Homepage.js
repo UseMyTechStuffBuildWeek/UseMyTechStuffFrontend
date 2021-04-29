@@ -19,7 +19,7 @@ const HomeContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 94vh;
   background-color: #53565a;
   
   button {
@@ -63,7 +63,7 @@ const HomeContainer = styled.div`
 `
 
 const InnerContainer = styled.div`
-  padding: 10% 6%;
+  padding: 12% 6%;
   border: 1px solid rgb(210, 210, 210);
   border-radius: 4px;
   box-shadow: 0px 1px 6px 2px rgb(128, 127, 127);

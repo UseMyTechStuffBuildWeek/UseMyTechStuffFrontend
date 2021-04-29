@@ -5,8 +5,9 @@ import Form from './Form';
 // import './App.css';
 import schema from './FormSchema';
 import { connect } from 'react-redux';
-import { editedFeature } from '../../Actions/TechStuffActions';
+import { editFeature } from '../../Actions/TechStuffActions';
 import { useParams, useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 
 const initialFormValues = {
   name: '',
@@ -50,8 +51,14 @@ function FormApp(props) {
 
   const updateItem = (itemToBeUpdated) => {
     axiosWithAuth()
-      .put('/api/equipment')
-      .then((res) => {});
+      .put(`/api/equipment/${id}`, itemToBeUpdated)
+      .then((res) => {
+        setItem(res.data)
+        console.log(itemToBeUpdated);
+      })
+      .catch(err => {
+        console.log(err);
+      })
   };
 
   const updateSubmit = () => {
@@ -60,8 +67,8 @@ function FormApp(props) {
       description: formValues.description.trim(),
       imgUrl: formValues.imgUrl.trim(),
     };
-    // updateItem(itemToBeUpdated);
-    props.editedFeature(itemToBeUpdated);
+    updateItem(itemToBeUpdated);
+    editFeature(itemToBeUpdated);
   };
 
   useEffect(() => {
@@ -71,9 +78,16 @@ function FormApp(props) {
     });
   }, [formValues]);
 
+  // STYLES //
+
+  const BodyStyles = styled.div`
+    background-color: #53565A;
+    height: 100vh;
+  `
+
+
   return (
-    <div>
-      <h1>Update your Listing:</h1>
+    <BodyStyles>
       <Form
         values={formValues}
         update={inputChange}
@@ -82,9 +96,10 @@ function FormApp(props) {
         errors={formErrors}
         equipment={props.equipment}
       />
-    </div>
+    </BodyStyles>
   );
 }
+
 const mapStateToProps = (state) => {
   return {
     name: state.name,

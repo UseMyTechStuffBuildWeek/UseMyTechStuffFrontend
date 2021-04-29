@@ -34,8 +34,10 @@ const Owner = (props) => {
       .catch((err) => console.log(err));
   };
 
+
   return (
     <div>
+      <button onClick={() => push(`/addequipment`)}>Add Item</button>
       {equipmentList.map((item) => {
         return (
           <div>
@@ -43,9 +45,8 @@ const Owner = (props) => {
             <img src={item.imgUrl} />
             <p>{item.description}</p>
             <button onClick={() => deleteItem(item)}>Delete Item</button>
-            <button onClick={() => push(`/editequipment/${item.id}`)}>
-              Edit Item
-            </button>
+            <button onClick={() => push(`/editequipment/${item.id}`)}>Edit Item</button>
+            
           </div>
         );
       })}
