@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-export const NewUserContainer = styled.div`
-  padding: 30px;
+const NewUserContainer = styled.div`
+  padding: 50px;
+  font-family: 'Fira Sans Condensed', sans-serif;
   input,
   button {
     appearance: none;
@@ -15,9 +16,9 @@ export const NewUserContainer = styled.div`
 
   h2 {
     color: black;
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     font-weight: 500;
-    margin-bottom: 10%;
+    margin-bottom: 13%;
   }
 
   button {
@@ -27,6 +28,7 @@ export const NewUserContainer = styled.div`
     background-color: #f8f8f8;
     cursor: pointer;
     font-weight: 700;
+    width:100px;
 
     &:hover {
       background-image: linear-gradient(to bottom, #fe4880, #ffce00);
@@ -51,7 +53,7 @@ const FormGroup = styled.div`
   label {
     display: block;
     color: black;
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin-bottom: 10%;
     transition: 0.4s;
   }
@@ -79,6 +81,11 @@ const FormGroup = styled.div`
   }
 `;
 
+const Buttons = styled.div`
+  display:flex;
+  justify-content:space-around;
+`;
+
 const Errors = styled.div`
   color: red;
 `;
@@ -92,6 +99,10 @@ function NewUserForm(props) {
   };
 
   const { push } = useHistory();
+
+  const routeToHome = () => {
+    push('/');
+  }
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -134,14 +145,15 @@ function NewUserForm(props) {
             Role&nbsp;
             <select value={values.role} name="role" onChange={onChange}>
               <option value="">-- Select a Role --</option>
-              <option value="Owner">Owner</option>
-              <option value="Renter">Renter</option>
+              <option value="owner">Owner</option>
+              <option value="renter">Renter</option>
             </select>
           </label>
         </FormGroup>
-        <div className="submit">
+        <Buttons>
           <button disabled={disabled}>Submit</button>
-        </div>
+          <button onClick={routeToHome}>Back</button>
+        </Buttons>
       </NewUserContainer>
     </StyleForm>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+import { useHistory } from 'react-router-dom';
 
 const StyledForm = styled.form`
     border: 1px solid rgb(210, 210, 210);
@@ -10,6 +11,7 @@ const StyledForm = styled.form`
     background-image: linear-gradient(to bottom right, #FFCE00, #FE4880);
 `
 const LoginContainer = styled.div`
+    font-family: 'Fira Sans Condensed', sans-serif;
     padding:30px;
     input, button {
         appearance: none;
@@ -32,6 +34,7 @@ const LoginContainer = styled.div`
         background-color: #F8F8F8;
         cursor:pointer;
         font-weight:700;
+        width:100px;
 
         &:hover {
             background-image: linear-gradient(to bottom, #FE4880, #FFCE00);
@@ -69,6 +72,11 @@ const FormGroup = styled.div`
 
 `
 
+const Buttons = styled.div`
+  display:flex;
+  justify-content:space-around;
+`
+
 const Errors = styled.div `
     color: red;
 `
@@ -84,6 +92,12 @@ export default function LoginForm({ values, submit, change, disabled, errors }) 
     const onChange = (event) => {
         const { name, value } = event.target;
         change(name, value)
+    }
+
+    const { push } = useHistory();
+
+    const routeToHome = () => {
+        push('/');
     }
 
 
@@ -116,9 +130,10 @@ export default function LoginForm({ values, submit, change, disabled, errors }) 
                         />
                     </label> 
                 </FormGroup>
-                <div>
+                <Buttons>
                     <button id="login-button"disabled={disabled}>Login</button>
-                </div>
+                    <button onClick={routeToHome}>Back</button>
+                </Buttons>
             </LoginContainer>
         </StyledForm>
     );
