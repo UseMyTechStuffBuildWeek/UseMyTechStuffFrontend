@@ -7,6 +7,7 @@ import FormApp from './Components/EditEquipment/FormApp';
 import NewUserForm from './Components/CreateNewUser/NewUserFormMain';
 import Renter from './Components/Renter/Renter';
 import Owner from './Components/Owner/Owner';
+import Homepage from './Components/HomePage/Homepage';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route path="/createuser">
             <NewUserForm />
+          </Route>
+          <Route exact path="/">
+            <Homepage/>
           </Route>
         </Switch>
       </div>
