@@ -27,7 +27,8 @@ function AddEquipmentFormMain(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
-
+  
+  const { push } = useHistory();
   const postNewEquipment = (newEquipment) => {
     axiosWithAuth()
       .post('/api/equipment', newEquipment)
@@ -35,6 +36,7 @@ function AddEquipmentFormMain(props) {
         console.log(res);
         setEquipment([res.data, ...equipment]);
         setFormValues(initialFormValues);
+        push('/owner');
       })
       .catch((err) => {
         console.log(err);

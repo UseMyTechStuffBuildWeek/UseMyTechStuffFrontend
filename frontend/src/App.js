@@ -51,7 +51,7 @@ function App() {
         <NavBar>
               <StyledLink to="/login">Login</StyledLink>
               <StyledH1>Welcome to UseMyTechStuff!</StyledH1>
-              <StyledLink onClick={logout} to="/login">Logout</StyledLink>
+              <StyledLink onClick={logout} to="/">Logout</StyledLink>
         </NavBar>
         <Switch>
           <PrivateRoute exact path="/editequipment/:id">
