@@ -1,9 +1,11 @@
+import { axiosWithAuth } from '../axiosWithAuth';
 import {
   ADD_FEATURE,
   NEW_USER_FEATURE,
   EDIT_FEATURE,
   LOGIN_FEATURE,
-} from '../actions/TechStuffActions';
+  GET_EQUIPMENT,
+} from '../Actions/TechStuffActions';
 
 const initialState = {
   user: {
@@ -15,6 +17,7 @@ const initialState = {
     imgURL: '',
     description: '',
   },
+  equipment: [],
 };
 
 export const techStuffReducer = (state = initialState, action) => {
@@ -29,6 +32,12 @@ export const techStuffReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+
+    case GET_EQUIPMENT:
+      return {
+        ...state,
+        equipment: [action.payload],
       };
 
     case EDIT_FEATURE:

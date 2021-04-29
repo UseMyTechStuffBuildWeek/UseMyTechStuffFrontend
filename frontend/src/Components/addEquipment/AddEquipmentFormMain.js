@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import * as yup from 'yup';
-import axiosWithAuth from '../axiosWithAuth';
+import { axiosWithAuth } from '../../axiosWithAuth';
 import schema from './addEquipmentFormSchema';
 import AddEquipmentForm from './AddEquipmentForm';
-import addFeature from '../../Actions/TechStuffActions';
+import { addFeature } from '../../Actions/TechStuffActions';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const initialFormValues = {
   name: '',
@@ -21,7 +22,7 @@ const initialFormErrors = {
 const initialEquipment = [];
 const initialDisabled = true;
 
-function AddEquipmentFormMain() {
+function AddEquipmentFormMain(props) {
   const [equipment, setEquipment] = useState(initialEquipment);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
@@ -31,12 +32,12 @@ function AddEquipmentFormMain() {
     axiosWithAuth()
       .post('/api/equipment', newEquipment)
       .then((res) => {
+        console.log(res);
         setEquipment([res.data, ...equipment]);
         setFormValues(initialFormValues);
       })
       .catch((err) => {
         console.log(err);
-        debugger;
       });
   };
 
@@ -70,7 +71,7 @@ function AddEquipmentFormMain() {
       imgUrl: formValues.imgUrl.trim(),
       description: formValues.description.trim(),
     };
-    // postNewEquipment(newEquipment);
+    postNewEquipment(newEquipment);
     props.addFeature(newEquipment);
   };
 

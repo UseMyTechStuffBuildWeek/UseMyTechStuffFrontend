@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import axiosWithAuth from '../../axiosWithAuth';
+import { axiosWithAuth } from '../../axiosWithAuth';
 import * as yup from 'yup';
 import Form from './Form';
 // import './App.css';
 import schema from './FormSchema';
 import { connect } from 'react-redux';
-import editedFeature from '../../Actions/TechStuffActions';
+import { editedFeature } from '../../Actions/TechStuffActions';
+import { useParams, useHistory } from 'react-router-dom';
 
 const initialFormValues = {
   name: '',
@@ -23,11 +23,16 @@ const initialFormErrors = {
 const initialItem = [];
 const initialDisabled = true;
 
-function FormApp() {
+function FormApp(props) {
   const [item, setItem] = useState(initialItem);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+
+  const { push } = useHistory();
+  const { id } = useParams();
+
+  console.log(id);
 
   const inputChange = (name, value) => {
     yup
@@ -45,19 +50,8 @@ function FormApp() {
 
   const updateItem = (itemToBeUpdated) => {
     axiosWithAuth()
-      .post(
-        '/api/equipment',
-        itemToBeUpdated
-      )
-      //This URL will need to be changed once authorization is completed, currently it just adds new Equipment instead of updating already existing equipment.
-      .then((res) => {
-        console.log(res);
-        setItem([res.data, ...item]);
-        setFormValues(initialFormValues);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      .put('/api/equipment')
+      .then((res) => {});
   };
 
   const updateSubmit = () => {
@@ -86,6 +80,7 @@ function FormApp() {
         submit={updateSubmit}
         disabled={disabled}
         errors={formErrors}
+        equipment={props.equipment}
       />
     </div>
   );
@@ -95,6 +90,7 @@ const mapStateToProps = (state) => {
     name: state.name,
     description: state.description,
     imgUrl: state.imgUrl,
+    equipment: state.equipment,
   };
 };
 export default connect(mapStateToProps, {})(FormApp);

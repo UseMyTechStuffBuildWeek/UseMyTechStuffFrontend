@@ -3,7 +3,7 @@ import { connect } from react-redux;
 import { addFeature } from '../../Actions/TechStuffActions'
 import styled from 'styled-components'
 
-export const AddEquipmentContainer = styled.div`
+export const AddEquipmentContainer = styled.div
     padding:30px;
     input, button {
         appearance: none;
@@ -31,7 +31,7 @@ export const AddEquipmentContainer = styled.div`
             background-image: linear-gradient(to bottom, #FE4880, #FFCE00);
         }
     }
-`
+
 
 const StyleForm = styled.form`
     border: 1px solid rgb(210, 210, 210);
@@ -40,9 +40,9 @@ const StyleForm = styled.form`
     display:block;
     position:relative;
     background-image: linear-gradient(to bottom right, #FFCE00, #FE4880);
-`
 
-const FormGroup = styled.div`
+
+const FormGroup = styled.div
     display:block;
     width: 300px;
     margin-bottom: 18%;
@@ -70,24 +70,26 @@ const FormGroup = styled.div`
             box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
         }
     }
-`
 
-const Errors = styled.div `
+
+const Errors = styled.div 
     color: red;
-`
 
-function AddEquipmentForm(props){
-    const { values, submit, change, disabled, errors } = props;
 
-    const onSubmit = (evt) => {
-      evt.preventDefault();
-      submit();
-    };
 
-    const onChange = (evt) => {
-        const { name, value } = evt.target;
-        change(name, value);
-    }
+function AddEquipmentForm(props) {
+  const { values, submit, change, disabled, errors } = props;
+
+  const onSubmit = (evt) => {
+    evt.preventDefault();
+    submit();
+  };
+
+  const onChange = (evt) => {
+    const { name, value } = evt.target;
+    change(name, value);
+  };
+
 
     return(
         <StyleForm onSubmit={onSubmit}>
@@ -142,5 +144,6 @@ function AddEquipmentForm(props){
         return {
             item: state.item,
     }    
-}
-export default connect(mapStateToProps, {addFeature})(AddEquipmentForm);
+
+};
+export default connect(mapStateToProps, { addFeature })(AddEquipmentForm);

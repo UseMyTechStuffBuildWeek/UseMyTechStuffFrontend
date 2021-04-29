@@ -32,7 +32,7 @@ const initialFormErrors = {
 const initialUsers = [];
 const initialDisabled = true;
 
-function NewUserFormMain() {
+function NewUserFormMain(props) {
   const [users, setUsers] = useState(initialUsers);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
