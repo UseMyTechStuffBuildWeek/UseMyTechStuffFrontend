@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import * as yup from 'yup';
 import schema from './validation/formSchema';
-import newUser from '../../Actions/TechStuffActions';
+import { newUserFeature } from '../../Actions/TechStuffActions';
 
 const MainContainer = styled.div`
   display: flex;
@@ -78,8 +78,8 @@ function NewUserFormMain(props) {
       role: formValues.role.trim(),
     };
 
-    // postNewUsers(newUser);
-    props.newUser(newUser);
+    postNewUsers(newUser);
+    newUserFeature(newUser);
   };
 
   return (
