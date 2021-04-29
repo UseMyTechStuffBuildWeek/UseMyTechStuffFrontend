@@ -22,6 +22,8 @@ const Renter = () => {
             <p>{item.name}</p>
             <img src={item.imgUrl} />
             <p>{item.description}</p>
+            <br></br>
+            <button>Rent This Item</button>
           </div>
         );
       })}
