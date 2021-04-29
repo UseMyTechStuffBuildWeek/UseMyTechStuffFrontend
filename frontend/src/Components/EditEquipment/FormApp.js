@@ -24,6 +24,11 @@ const initialFormErrors = {
 const initialItem = [];
 const initialDisabled = true;
 
+const BodyStyles = styled.div`
+  background-color: #53565A;
+  height: 100vh;
+`
+
 function FormApp(props) {
   const [item, setItem] = useState(initialItem);
   const [formValues, setFormValues] = useState(initialFormValues);
@@ -81,14 +86,11 @@ function FormApp(props) {
 
   // STYLES //
 
-  const BodyStyles = styled.div`
-    background-color: #53565A;
-    height: 100vh;
-  `
 
 
   return (
-    <BodyStyles>
+    <div>
+      <BodyStyles>
       <Form
         values={formValues}
         update={inputChange}
@@ -97,7 +99,8 @@ function FormApp(props) {
         errors={formErrors}
         equipment={props.equipment}
       />
-    </BodyStyles>
+      </BodyStyles>
+    </div>
   );
 }
 
