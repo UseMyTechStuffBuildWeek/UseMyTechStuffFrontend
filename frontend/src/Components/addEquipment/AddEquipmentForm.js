@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { addFeature } from '../../Actions/TechStuffActions';
 import styled from 'styled-components';
 
-const OuterDiv = styled.div`
-height: 94vh;
-background-color: #53565a;
-padding-top: 50px;
-`
-
 const AddEquipmentContainer = styled.div`
   padding: 30px;
-  width: 30%;
+  width: 35%;
   margin-left:3%;
   margin-top: 2%;
+  font-family: 'Fira Sans Condensed', sans-serif;
   input,
   button {
     appearance: none;
@@ -30,7 +25,7 @@ const AddEquipmentContainer = styled.div`
   }
 
   h1 {
-    color: black;
+    color: white;
     font-size: 1.7rem;
     font-weight: 500;
     margin-bottom: 10%;
@@ -87,7 +82,7 @@ const FormGroup = styled.div`
     border-radius: 8px;
     transition: 0.4s;
     width:440px;
-    margin-top:7px;
+    margin-top:2%;
 
     &:focus {
       box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
@@ -113,8 +108,7 @@ function AddEquipmentForm(props) {
   };
 
   return (
-      <OuterDiv>
-        <StyleForm onSubmit={onSubmit}>
+      <StyleForm onSubmit={onSubmit}>
         <AddEquipmentContainer>
             <h1>ADD A NEW ITEM</h1>  
             <Errors>
@@ -132,6 +126,8 @@ function AddEquipmentForm(props) {
                 type="text"
                 />
             </label>
+            </FormGroup>
+            <FormGroup>
             <label>
                 Description
                 <input
@@ -141,6 +137,8 @@ function AddEquipmentForm(props) {
                 type="text"
                 />
             </label>
+            </FormGroup>
+            <FormGroup>
             <label>
                 Add Image
                 <input
@@ -150,13 +148,12 @@ function AddEquipmentForm(props) {
                 type="text"
                 />
             </label>
+            </FormGroup>
             <div>
             <button disabled={disabled}>submit</button>
             </div>
-            </FormGroup>
         </AddEquipmentContainer>
-        </StyleForm>          
-      </OuterDiv>
+      </StyleForm>          
 
   );
 }
