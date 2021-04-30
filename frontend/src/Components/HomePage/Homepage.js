@@ -11,7 +11,7 @@ const kf = keyframes`
   }
 
   to{
-    top:-25%;
+    top:-19%;
   }
 `
 
