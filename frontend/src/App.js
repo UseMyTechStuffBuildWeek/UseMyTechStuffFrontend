@@ -12,42 +12,46 @@ import styled from 'styled-components';
 
 import PrivateRoute from './PrivateRoute';
 
+// APP STYLES //
+
+const NavBar = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  background-image: linear-gradient(to left, #FFCE00, #FE4880);
+  height: 6vh;
+  padding: 0 4%;
+  border-bottom: 3px solid black;
+`
+
+const StyledLink = styled(Link)`
+  color: black;
+  background-color: white;
+  padding: .2% 2%;
+  border-radius: 8px;
+  opacity: 80%;
+  border: 2px #3a3a3a solid;
+`
+const StyledH1 = styled.h1`
+  font-size: 1.8rem;
+  border-bottom: 2px solid black;
+`
+// APP STYLES ABOVE //
+
+
 function App() {
   const logout = () => {
     window.localStorage.removeItem('token');
   };
 
-  // APP STYLES //
-  
-  const NavBar = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-family: 'Fira Sans Condensed', sans-serif;
-    background-image: linear-gradient(to left, #FFCE00, #FE4880);
-    height: 6vh;
-    padding: 0 4%;
-`
-
-  const StyledLink = styled(Link)`
-    color: black;
-    background-color: white;
-    padding: .2% 2%;
-    border-radius: 8px;
-    opacity: 80%;
-    border: 2px #3a3a3a solid;
-  `
-  const StyledH1 = styled.h1`
-    font-size: 1.8rem;
-    border-bottom: 2px solid black;
-  `
-  // APP STYLES ABOVE //
 
   return (
     <Router>
-      <div className="App">
+      <div>
         <NavBar>
               <StyledLink to="/login">Login</StyledLink>
               <StyledH1>Welcome to UseMyTechStuff!</StyledH1>

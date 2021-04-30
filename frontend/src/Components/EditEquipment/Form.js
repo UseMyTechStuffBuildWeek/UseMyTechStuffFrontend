@@ -1,8 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
+import { editFeature } from '../../Actions/TechStuffActions';
 
+const FormStyles = styled.div`
+  font-family: 'Fira Sans Condensed', sans-serif;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2%;
+  border: 2px solid black;
+  background-color: #c3c3c3;
+  width:65%;
+  padding: 2%;
+  opacity: 95%;
+  border-radius: 15px;
+`
 
+const H1Styles = styled.h1`
+  font-size: 2rem;
+  margin-bottom: 2%;
+`
 
+const SpacerDiv = styled.div`
+  height: 25vh;
+`
+
+const BodyStyles = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const ErrorStyles = styled.div`
+  color: #d51b00;
+  font-size: 1.5rem;
+  margin-bottom: .3%;
+`
 
 export default function Form(props) {
   const { values, update, submit, disabled, errors } = props;
@@ -17,48 +50,48 @@ export default function Form(props) {
     submit();
   };
 
-  // STYLES //
-  
-  
-  // STYLES ABOVE //
 
   return (
-    <div>
-      <h1>Update your Listing:</h1>
-      <h2>Edit Equipment:</h2>
-      <div>{errors.name}</div>
-      <div>{errors.description}</div>
-      <div>{errors.imgUrl}</div>
-      <form onSubmit={onSubmit}>
-        <label>
-          Name:
-          <input
-            value={values.name}
-            onChange={onChange}
-            name="name"
-            type="text"
-          />
-        </label>
-        <label>
-          Description:
-          <input
-            value={values.description}
-            onChange={onChange}
-            name="description"
-            type="text"
-          />
-        </label>
-        <label>
-          Upload a New Image:
-          <input
-            value={values.imgUrl}
-            onChange={onChange}
-            name="imgUrl"
-            type="url"
-          />
-        </label>
-        <button disabled={disabled}>Submit</button>
-      </form>
-    </div>
+    <>
+      <SpacerDiv></SpacerDiv>
+      <BodyStyles>
+        <FormStyles>
+          <ErrorStyles>{errors.name}</ErrorStyles>
+          <ErrorStyles>{errors.description}</ErrorStyles>
+          <ErrorStyles>{errors.imgUrl}</ErrorStyles>
+          <H1Styles>Update your Listing:</H1Styles>
+          <form onSubmit={onSubmit}>
+            <label>
+              Name:&nbsp;
+              <input
+                value={values.name}
+                onChange={onChange}
+                name="name"
+                type="text"
+              />&nbsp;
+            </label>
+            <label>
+              Description:&nbsp;
+              <input
+                value={values.description}
+                onChange={onChange}
+                name="description"
+                type="text"
+              />&nbsp;
+            </label>
+            <label>
+              Upload a New Image:&nbsp;
+              <input
+                value={values.imgUrl}
+                onChange={onChange}
+                name="imgUrl"
+                type="url"
+              />&nbsp;
+            </label>
+            <button disabled={disabled}>Submit</button>
+          </form>
+        </FormStyles>
+      </BodyStyles>
+    </>
   );
 }

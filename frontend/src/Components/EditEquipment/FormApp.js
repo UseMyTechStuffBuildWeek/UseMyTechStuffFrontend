@@ -26,8 +26,17 @@ const initialDisabled = true;
 
 const BodyStyles = styled.div`
   background-color: #53565A;
-  height: 100vh;
+  height: 94vh;
 `
+
+const ImgStyles = styled.div`
+  background-image: url('https://images.unsplash.com/photo-1510511233900-1982d92bd835?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-position: center;
+  background-size: cover;
+  height: 94vh;
+  opacity: 70%;
+`
+
 
 function FormApp(props) {
   const [item, setItem] = useState(initialItem);
@@ -84,21 +93,20 @@ function FormApp(props) {
     });
   }, [formValues]);
 
-  // STYLES //
-
-
-
+  
   return (
     <div>
       <BodyStyles>
-      <Form
-        values={formValues}
-        update={inputChange}
-        submit={updateSubmit}
-        disabled={disabled}
-        errors={formErrors}
-        equipment={props.equipment}
-      />
+        <ImgStyles>
+        <Form
+          values={formValues}
+          update={inputChange}
+          submit={updateSubmit}
+          disabled={disabled}
+          errors={formErrors}
+          equipment={props.equipment}
+        />
+        </ImgStyles>
       </BodyStyles>
     </div>
   );
