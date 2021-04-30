@@ -62,31 +62,31 @@ export default function Form(props) {
           <H1Styles>Update your Listing:</H1Styles>
           <form onSubmit={onSubmit}>
             <label>
-              Name:&nbsp;
+              Name:&nbsp;&nbsp;
               <input
                 value={values.name}
                 onChange={onChange}
                 name="name"
                 type="text"
-              />&nbsp;
+              />&nbsp;&nbsp;
             </label>
             <label>
-              Description:&nbsp;
+              Description:&nbsp;&nbsp;
               <input
                 value={values.description}
                 onChange={onChange}
                 name="description"
                 type="text"
-              />&nbsp;
+              />&nbsp;&nbsp;
             </label>
             <label>
-              Upload a New Image:&nbsp;
+              Upload a New Image:&nbsp;&nbsp;
               <input
                 value={values.imgUrl}
                 onChange={onChange}
                 name="imgUrl"
                 type="url"
-              />&nbsp;
+              />&nbsp;&nbsp;
             </label>
             <button disabled={disabled}>Submit</button>
           </form>
