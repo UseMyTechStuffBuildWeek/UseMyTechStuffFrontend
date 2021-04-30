@@ -20,6 +20,7 @@ const StyledDiv = styled.div`
     position: center;
     object-fit: contain;
     border-radius: 2%;
+    height: 60vh;
   }
 
   h2 {
@@ -29,15 +30,18 @@ const StyledDiv = styled.div`
 
   h3 {
     font-size: 1.5rem;
+    margin-right:1rem;
   }
 
   button {
     border-radius: 8px;
-    width: 6rem;
-    height: 2rem;
+    width: 7rem;
+    height: 2.3rem;
     cursor: pointer;
     background-color: lightgrey; 
-    padding: 2%;
+    padding: 4%;
+    font-size:.9rem;
+    font-weight:600;
 
     &:hover {
             background-image: linear-gradient(to bottom, #FE4880, #FFCE00);
@@ -88,7 +92,10 @@ const Owner = (props) => {
 
 
   return (
-    <div>
+    <StyledDiv>
+      <div>
+        <button onClick={() => push(`/addequipment`)}>Add New</button>
+      </div>
       {equipmentList.map((item) => {
         return (
           <StyledDiv>
@@ -99,13 +106,12 @@ const Owner = (props) => {
                   <StyledBtnContainer>
                       <button onClick={() => deleteItem(item)}>Delete Item</button>
                       <button onClick={() => push(`/editequipment/${item.id}`)}>Edit Item</button>
-                      <button onClick={() => push(`/addequipment`)}>Add Item</button>
                   </StyledBtnContainer>
             </StyledContainer>
           </StyledDiv>
         );
       })}
-    </div>
+    </StyledDiv>
   );
 };
 
