@@ -36,8 +36,8 @@ const StyledDiv = styled.div`
     width: 6rem;
     height: 2rem;
     cursor: pointer;
-    background-color: #F8F8F8; 
-    font-weight:700;
+    background-color: lightgrey; 
+    padding: 2%;
 
     &:hover {
             background-image: linear-gradient(to bottom, #FE4880, #FFCE00);
@@ -47,8 +47,14 @@ const StyledDiv = styled.div`
 const StyledContainer = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 60%;
+  width: 40%;
   margin: 2%;
+`
+const StyledBtnContainer = styled.div`
+  width: 30%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
 `
 
 const Owner = (props) => {
@@ -83,7 +89,6 @@ const Owner = (props) => {
 
   return (
     <div>
-      <button onClick={() => push(`/addequipment`)}>Add Item</button>
       {equipmentList.map((item) => {
         return (
           <StyledDiv>
@@ -91,10 +96,11 @@ const Owner = (props) => {
               <img src={item.imgUrl} />
               <StyledContainer>
                 <h3>{item.description}</h3>
-                <button onClick={() => deleteItem(item)}>Delete Item</button>
-                <button onClick={() => push(`/editequipment/${item.id}`)}>
-                  Edit Item
-                </button>
+                  <StyledBtnContainer>
+                      <button onClick={() => deleteItem(item)}>Delete Item</button>
+                      <button onClick={() => push(`/editequipment/${item.id}`)}>Edit Item</button>
+                      <button onClick={() => push(`/addequipment`)}>Add Item</button>
+                  </StyledBtnContainer>
             </StyledContainer>
           </StyledDiv>
         );
