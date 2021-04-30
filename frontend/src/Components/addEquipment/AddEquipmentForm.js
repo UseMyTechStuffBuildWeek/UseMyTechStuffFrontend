@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import { addFeature } from '../../Actions/TechStuffActions';
 import styled from 'styled-components';
 
+const OuterDiv = styled.div`
+height: 94vh;
+background-color: #53565a;
+padding-top: 50px;
+`
+
 const AddEquipmentContainer = styled.div`
   padding: 30px;
   input,
@@ -14,6 +20,13 @@ const AddEquipmentContainer = styled.div`
   }
 
   h2 {
+    color: black;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 10%;
+  }
+
+  h1 {
     color: black;
     font-size: 1.7rem;
     font-weight: 500;
@@ -41,6 +54,9 @@ const StyleForm = styled.form`
   display: block;
   position: relative;
   background-image: linear-gradient(to bottom right, #ffce00, #fe4880);
+  height: 400px;
+  width: 350px;
+  margin: 0 auto;
 `;
 
 const FormGroup = styled.div`
@@ -91,51 +107,51 @@ function AddEquipmentForm(props) {
   };
 
   return (
-    <StyleForm onSubmit={onSubmit}>
-      <AddEquipmentContainer>
-        <Errors>
-          <div>{errors.name}</div>
-          <div>{errors.description}</div>
-          <div>{errors.imgUrl}</div>
-        </Errors>
-        <FormGroup>
-          <label>
-            Product Name
-            <input
-              value={values.name}
-              onChange={onChange}
-              name="name"
-              type="text"
-            />
-          </label>
-        </FormGroup>
-        <FormGroup>
-          <label>
-            Description
-            <input
-              value={values.description}
-              onChange={onChange}
-              name="description"
-              type="text"
-            />
-          </label>
-        </FormGroup>
-        <FormGroup>
-          <label>
-            Add Image
-            <input
-              value={values.imgUrl}
-              onChange={onChange}
-              name="imgUrl"
-              type="text"
-            />
-          </label>
-        </FormGroup>
-        <div>
-          <button disabled={disabled}>submit</button>
-        </div>
-      </AddEquipmentContainer>
-    </StyleForm>
+      <OuterDiv>
+        <StyleForm onSubmit={onSubmit}>
+        <AddEquipmentContainer>
+            <h1>ADD A NEW ITEM</h1>  
+            <Errors>
+            <div>{errors.name}</div>
+            <div>{errors.description}</div>
+            <div>{errors.imgUrl}</div>
+            </Errors>
+            <FormGroup>
+            <label>
+                Product Name
+                <input
+                value={values.name}
+                onChange={onChange}
+                name="name"
+                type="text"
+                />
+            </label>
+            <label>
+                Description
+                <input
+                value={values.description}
+                onChange={onChange}
+                name="description"
+                type="text"
+                />
+            </label>
+            <label>
+                Add Image
+                <input
+                value={values.imgUrl}
+                onChange={onChange}
+                name="imgUrl"
+                type="text"
+                />
+            </label>
+            <div>
+            <button disabled={disabled}>submit</button>
+            </div>
+            </FormGroup>
+        </AddEquipmentContainer>
+        </StyleForm>          
+      </OuterDiv>
+
   );
 }
 

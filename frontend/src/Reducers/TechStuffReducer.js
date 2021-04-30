@@ -1,4 +1,3 @@
-import { axiosWithAuth } from '../axiosWithAuth';
 import {
   ADD_FEATURE,
   NEW_USER_FEATURE,
@@ -44,7 +43,7 @@ export const techStuffReducer = (state = initialState, action) => {
       const editItem = state.item.find((item) => item.id === action.payload);
       return {
         ...state,
-        item: action.payload,
+        item: editItem,
       };
 
     case LOGIN_FEATURE:

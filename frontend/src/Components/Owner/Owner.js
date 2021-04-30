@@ -80,8 +80,10 @@ const Owner = (props) => {
       .catch((err) => console.log(err));
   };
 
+
   return (
     <div>
+      <button onClick={() => push(`/addequipment`)}>Add Item</button>
       {equipmentList.map((item) => {
         return (
           <StyledDiv>

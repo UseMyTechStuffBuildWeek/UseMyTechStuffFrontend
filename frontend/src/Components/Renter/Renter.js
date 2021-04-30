@@ -23,7 +23,7 @@ const Renter = () => {
             <img src={item.imgUrl} />
             <p>{item.description}</p>
             <br></br>
-            <button>Rent This Item</button>
+            <button onClick={() => {alert('Your item has been rented!')}}>Rent This Item</button>
           </div>
         );
       })}
