@@ -77,10 +77,6 @@ function AddEquipmentFormMain(props) {
     props.addFeature(newEquipment);
   };
 
-  // useEffect(() => {
-  //     getEquipment();
-  //   }, []);
-
   useEffect(() => {
     schema.isValid(formValues).then((valid) => {
       setDisabled(!valid);
