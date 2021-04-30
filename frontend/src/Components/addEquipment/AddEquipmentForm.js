@@ -11,6 +11,9 @@ padding-top: 50px;
 
 const AddEquipmentContainer = styled.div`
   padding: 30px;
+  width: 30%;
+  margin-left:3%;
+  margin-top: 2%;
   input,
   button {
     appearance: none;
@@ -40,6 +43,7 @@ const AddEquipmentContainer = styled.div`
     background-color: #f8f8f8;
     cursor: pointer;
     font-weight: 700;
+    width: 160px;
 
     &:hover {
       background-image: linear-gradient(to bottom, #fe4880, #ffce00);
@@ -48,15 +52,15 @@ const AddEquipmentContainer = styled.div`
 `;
 
 const StyleForm = styled.form`
+  padding-top:40px;
   border: 1px solid rgb(210, 210, 210);
   border-radius: 4px;
   box-shadow: 0px 1px 6px 2px rgb(128, 127, 127);
   display: block;
   position: relative;
-  background-image: linear-gradient(to bottom right, #ffce00, #fe4880);
-  height: 400px;
-  width: 350px;
-  margin: 0 auto;
+  background-image: linear-gradient(to bottom right, #000000, #ffffff);
+  height:90vh;
+
 `;
 
 const FormGroup = styled.div`
@@ -66,14 +70,14 @@ const FormGroup = styled.div`
 
   label {
     display: block;
-    color: black;
-    font-size: 1rem;
+    color: white;
+    font-size: 1.2rem;
     margin-bottom: 10%;
     transition: 0.4s;
   }
 
   &:focus-within label {
-    color: white;
+    color: #fe4880;
   }
 
   input {
@@ -82,6 +86,8 @@ const FormGroup = styled.div`
     background-color: #f8f8f8;
     border-radius: 8px;
     transition: 0.4s;
+    width:440px;
+    margin-top:7px;
 
     &:focus {
       box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
